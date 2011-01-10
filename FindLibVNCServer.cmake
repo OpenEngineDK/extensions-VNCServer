@@ -1,0 +1,28 @@
+
+FIND_PATH(LIBVNCSERVER_INCLUDE_DIR NAMES rfb/rfb.h
+  PATHS
+  ${PROJECT_BINARY_DIR}/include
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/libraries/libvncserver/include
+  ENV CPATH
+  /usr/include
+  /usr/local/include
+  /opt/local/include
+  NO_DEFAULT_PATH
+)
+FIND_LIBRARY(LIBVNCSERVER_LIBRARIES
+  NAMES 
+  "vncserver"
+  PATHS
+  ${PROJECT_SOURCE_DIR}/libraries/libvncserver/lib
+  ENV LD_LIBRARY_PATH
+  ENV LIBRARY_PATH
+  /usr/lib
+  /usr/local/lib
+  /opt/local/lib
+  NO_DEFAULT_PATH
+)
+
+IF(LIBVNCSERVER_INCLUDE_DIR AND LIBVNCSERVER_LIBRARIES)
+   SET(LIBVNCSERVER_FOUND TRUE)
+ENDIF(LIBVNCSERVER_INCLUDE_DIR AND LIBVNCSERVER_LIBRARIES)
