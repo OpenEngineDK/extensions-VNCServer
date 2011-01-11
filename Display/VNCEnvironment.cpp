@@ -1,5 +1,4 @@
 #include "VNCEnvironment.h"
-#include "VNCFrame.h"
 
 namespace OpenEngine {
 namespace Display {
