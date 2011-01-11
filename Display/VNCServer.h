@@ -1,4 +1,4 @@
-// 
+//
 // -------------------------------------------------------------------
 // Copyright (C) 2007 OpenEngine.dk (See AUTHORS)
 //
@@ -18,9 +18,8 @@
 #include <Logging/Logger.h>
 
 
-#include <arpa/inet.h>
+// #include <arpa/inet.h>
 #include <rfb/rfb.h>
-#include <fstream>
 
 namespace OpenEngine {
 namespace Display {
@@ -28,36 +27,16 @@ namespace Display {
     using namespace Core;
     using namespace std;
 
-class VNCServer : public IListener<Core::ProcessEventArg>
-                , public IListener<Core::InitializeEventArg> {
-    ICanvas* canvas;
+class VNCServer {
     char *buffer;
     rfbScreenInfoPtr server;
     long usec;
 public:
-    VNCServer(ICanvas* c) : canvas(c) {}
-    void Handle(Core::InitializeEventArg arg) {
-        ITexture2DPtr tex = canvas->GetTexture();
-
-        buffer = (char*)malloc(sizeof(char)*tex->GetWidth()*tex->GetHeight()*4);
-        
-        server = rfbGetScreen(0,NULL,tex->GetWidth(),tex->GetHeight(),8,3,4);
-        server->frameBuffer=buffer;
-        
-        rfbInitServer(server);           
-                
-
-    }
-    void Handle(Core::ProcessEventArg arg) {
-        if (rfbIsActive(server)) {
-            ITexture2DPtr tex = canvas->GetTexture();
-            glReadPixels(0,0,tex->GetWidth(),tex->GetHeight(),GL_RGBA,GL_BYTE,buffer);
-            
-            // rfbMarkRectAsModified(server,0,0,tex->GetWidth(),tex->GetHeight());
-            // usec = server->deferUpdateTime*1000;    
-            // rfbProcessEvents(server,usec);
-        }  
-    }
+    VNCServer();
+    void StartServer(int w, int h);
+    void Post();
+    char* GetBuffer();
+    void MarkDirty(int x, int y, int w, int h);
 };
 
 

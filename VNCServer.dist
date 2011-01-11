@@ -1,0 +1,7 @@
+# VNCServer dependencies
+
+# standard set of extensions
+darcs /extensions/VNCServer        http://openengine.dk/code/extensions/VNCServer
+
+darcs-dev /extensions/VNCServer    fh.daimi.au.dk:/users/cgd/code/extensions/VNCServer
+
