@@ -1,7 +1,7 @@
 # VNCServer dependencies
 
 # standard set of extensions
-darcs /extensions/VNCServer        http://openengine.dk/code/extensions/VNCServer
+git /extensions/VNCServer        https://github.com/OpenEngineDK/extensions-VNCServer.git
 
-darcs-dev /extensions/VNCServer    fh.daimi.au.dk:/users/cgd/code/extensions/VNCServer
+git-dev /extensions/VNCServer    git@github.com:OpenEngineDK/extensions-VNCServer.git
 
